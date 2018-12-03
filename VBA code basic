@@ -1,0 +1,53 @@
+Sub BasicVBAHW()
+
+  
+  Dim Ticker As String
+
+  
+  Dim Stock_Volume As Double
+  Stock_Volume = 0
+
+  
+  Dim TSV_Table As Integer
+  TSV_Table = 2
+  
+  Dim i As Long
+lastrow = Cells(Rows.Count, 1).End(xlUp).Row
+
+
+  
+  For i = 2 To lastrow
+
+    
+    If Cells(i + 1, 1).Value <> Cells(i, 1).Value Then
+
+     
+      Ticker = Cells(i, 1).Value
+
+     
+      Stock_Volume = Stock_Volume + Cells(i, 7).Value
+
+     
+      Range("I" & TSV_Table).Value = Ticker
+
+    
+      Range("J" & TSV_Table).Value = Stock_Volume
+
+    
+      TSV_Table = TSV_Table + 1
+      
+      
+      Stock_Volume = 0
+
+    
+    Else
+
+      
+      Stock_Volume = Stock_Volume + Cells(i, 7).Value
+
+    End If
+
+  Next i
+
+End Sub
+
